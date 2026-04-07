@@ -1,0 +1,42 @@
+article {
+    padding: 1rem;
+    font-family: sans-serif;
+}
+
+.article-header {
+    padding-bottom: .5rem;
+    border-bottom: 1px solid #ccc;
+
+    &>* {
+        margin-top: .1rem;
+        margin-bottom: .1rem;
+    }
+}
+
+.article-content {
+    margin-top: 1rem;
+}
+
+.article-content {
+    p {
+        margin-top: .25rem;
+        margin-bottom: .25rem;
+    }
+}
+
+.article-footer {
+    padding: .5rem;
+    border-top: 1px solid #ccc;
+
+    font-size: small;
+
+    ul {
+        list-style: square;
+    }
+}
+
+hr {
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, transparent, blue, transparent);
+}
