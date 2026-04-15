@@ -139,6 +139,10 @@ p {
 div.image-container {
     margin: 1.5em auto;
     text-align: center;
+
+    &>img {
+        max-width: 100%;
+    }
 }
 
 .art-by {
