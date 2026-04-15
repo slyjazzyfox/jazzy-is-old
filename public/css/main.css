@@ -136,8 +136,11 @@ p {
     }
 }
 
+div.image-container {
+    margin: 1.5em auto;
+    text-align: center;
+}
+
 .art-by {
     display: block;
-    margin: auto;
-    text-align: center;
 }

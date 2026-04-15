@@ -17,7 +17,7 @@ const pageFiles = (await readdir(
     }
 )).filter(x => x.endsWith(TEMPLATE_EXTENSION));
 
-pageFiles.sort((a, b) => b.split('/').length - a.split('/').length);
+pageFiles.sort((a, b) => b.localeCompare(a));
 
 const pages = pageFiles.map(x => {
     return {
