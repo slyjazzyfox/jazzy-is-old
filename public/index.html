@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jazzy is old</title>
+  <title>
+Jazzy is old - Home
+  </title>
   <link rel="stylesheet" href="css/main.css">
+  <style>
+    html {
+        background-image: url('img/texture_lt_blue_011.png');
+    }
+  </style>
 </head>
 <body>
 <aside>
-<table class="centered logo-container">
-  <tr>
-    <td>
-      <a href="index.html" class="logo">
-        <img src="img/logo.gif" alt="Black and white hamster playing a keytar" title="Jazzy is old"/>
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <small>(art by <a href="https://t.me/tejoarts" target="_blank">Tejoncita</a>)</small>
-    </td>
-  </tr>
-</table>
+<div class="centered logo-container">
+  <a href="index.html" class="logo">
+    <img src="img/logo.gif" alt="Black and white hamster playing a keytar" title="Jazzy is old"/>
+  </a>
+  <small class="art-by">art by <a href="https://t.me/tejoarts" target="_blank">Tejoncita</a></small>
+</div>
 
 <!-- Nav link for the *current* page is converted to <span> on "compile" time yay! -->
 <nav>
@@ -38,29 +37,15 @@
 
 <section>
   <p><b>¡Hola!</b> Soy un hamstercito 3D. Hago streams en Twitch, soy programador y músico.</p>
-  <table class="centered">
-    <tr>
-      <td>
-        <img
-            class="half-size"
-            src="img/hamster/jazzy-mikekatar-controller-low.gif"
-            alt="Black and white hamster holding a controller"
-        />
-      </td>
-      <td>
-        <img
-            class="half-size"
-            src="img/hamster/jazzy-mikekatar-computer-low.gif"
-            alt="Black and white hamster typing on a computer"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <small>(art by <a href="https://linktr.ee/MikeKatar" target="_blank">Mike "Katar" Trocchia</a>)</small>
-      </td>
-    </tr>
-  </table>
+  <div style="display: flex; justify-content: space-evenly;">
+    <img src="img/hamster/jazzy-mikekatar-controller-low.gif"
+        alt="Black and white hamster holding a controller"
+    />
+    <img src="img/hamster/jazzy-mikekatar-computer-low.gif"
+        alt="Black and white hamster typing on a computer"
+    />
+  </div>
+  <small class="art-by">art by <a href="https://linktr.ee/MikeKatar" target="_blank">Mike "Katar" Trocchia</a></small>
 </section>
 
 <section>

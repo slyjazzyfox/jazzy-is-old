@@ -3,16 +3,18 @@ html {
     padding: 0;
 
     font-family: monospace;
-
-    background-image: url('../img/texture_lt_blue_011.png');
     background-repeat: repeat;
 }
 
+/* TODO: responsiveness for <500px only*/
+
 body {
-    max-width: 800px;
+    min-width: 500px;
+    max-width: 1200px;
     margin: 0 auto;
 
     display: flex;
+    justify-content: center;
 }
 
 .logo-container {
@@ -21,11 +23,16 @@ body {
 
 .logo {
     display: block;
-    height: 84px;
+
+    object-fit: contain;
+    overflow: hidden;
 
     img {
-        width: auto;
-        height: 100%;
+        width: 100%;
+        height: auto;
+
+        max-height: 100px;
+        object-fit: cover;
     }
 }
 
@@ -63,8 +70,12 @@ nav {
 
 aside {
     background-color: #f0f0f0;
-
+    flex: 160;
     word-wrap: unset;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
@@ -78,6 +89,7 @@ nav {
 }
 
 main {
+    flex: 640;
     padding: 10px;
 }
 
@@ -100,4 +112,32 @@ section {
 
 p {
     text-indent: 1rem;
+}
+
+#blog-entries {
+    &>table {
+        margin: auto;
+        width: 80%;
+        table-layout: fixed;
+        text-align: center;
+
+        border-collapse: collapse;
+
+        & tr {
+            border-top: 1px solid #cccccc;
+            border-bottom: 1px solid #0a0a0a;
+            border-left: 1px solid #cccccc;
+            border-right: 1px solid #0a0a0a;
+        }
+
+        &>tbody>tr>td {
+            padding: .5rem;
+        }
+    }
+}
+
+.art-by {
+    display: block;
+    margin: auto;
+    text-align: center;
 }

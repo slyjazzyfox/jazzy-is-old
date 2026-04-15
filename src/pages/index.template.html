@@ -1,28 +1,21 @@
 @base
+@section title
+Jazzy is old - Home
+@end
 @section content
 <h1>Bienvenidxs a este pequeño rincón de la web</h1>
 
 <section>
   <p><b>¡Hola!</b> Soy un hamstercito 3D. Hago streams en Twitch, soy programador y músico.</p>
-  <table class="centered">
-    <tr>
-      <td>
-        <img src="img/hamster/jazzy-mikekatar-controller-low.gif"
-            alt="Black and white hamster holding a controller"
-        />
-      </td>
-      <td>
-        <img src="img/hamster/jazzy-mikekatar-computer-low.gif"
-            alt="Black and white hamster typing on a computer"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <small>(art by <a href="https://linktr.ee/MikeKatar" target="_blank">Mike "Katar" Trocchia</a>)</small>
-      </td>
-    </tr>
-  </table>
+  <div style="display: flex; justify-content: space-evenly;">
+    <img src="@rel(img/hamster/jazzy-mikekatar-controller-low.gif)"
+        alt="Black and white hamster holding a controller"
+    />
+    <img src="@rel(img/hamster/jazzy-mikekatar-computer-low.gif)"
+        alt="Black and white hamster typing on a computer"
+    />
+  </div>
+  <small class="art-by">art by <a href="https://linktr.ee/MikeKatar" target="_blank">Mike "Katar" Trocchia</a></small>
 </section>
 
 <section>
@@ -34,7 +27,7 @@
 <table style="margin: auto;">
   <tr>
     <td>
-      <img src="img/win95-exclamation.png" alt="Yellow exclamation triangle"/>
+      <img src="@rel(img/win95-exclamation.png)" alt="Yellow exclamation triangle"/>
     </td>
     <td>
       Sitio en construcción.
