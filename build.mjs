@@ -1,5 +1,5 @@
 import path from 'path';
-import { readdir, readFile, writeFile, mkdir,  } from 'fs/promises';
+import { readdir, readFile, writeFile, mkdir, rm, cp } from 'fs/promises';
 
 const TEMPLATE_EXTENSION = '.template.html';
 
@@ -64,6 +64,12 @@ function generateRssFeed(posts) {
 </channel>
 </rss>`;
 }
+
+try {
+    await rm(outputDir, { recursive: true, force: true });
+    await mkdir(path.join(outputDir));
+    await cp(path.join(srcDir, 'static'), outputDir, { recursive: true });
+} catch { /* 🤷 */ }
 
 let blogPosts = [];
 
