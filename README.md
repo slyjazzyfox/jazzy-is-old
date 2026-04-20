@@ -12,7 +12,7 @@ Mi idea es improvisar y retomar el contacto con una forma más simple de program
 
 ## TODO
 
-- [ ] Sección: acerca de mí
+- [x] Sección: acerca de mí
 - [ ] Sección: el canal de Twitch (lore y esas cosas)
 - [ ] Sección: galeria/s
 - [ ] Sección: gente copada / links / inspiración
