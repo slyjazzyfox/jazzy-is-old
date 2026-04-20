@@ -183,6 +183,20 @@ nav.sidebar {
 
 h1 {
     text-align: center;
+    background-clip: text;
+    color: rgba(255, 255, 255, .2);
+    background-image: linear-gradient(to right, black, var(--accent), black);
+    background-repeat: round;
+    animation: shimmer 5s linear alternate infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -20ch 0;
+    }
+    100% {
+        background-position: 20ch 0;
+    }
 }
 
 main {
