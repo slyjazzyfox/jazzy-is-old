@@ -10,10 +10,12 @@ Mi idea es improvisar y retomar el contacto con una forma más simple de program
 
 (2026-04-19) Estoy negado con agregar JS, pero algunas cosas se beneficiarían de ser una simple llamada a una API. Por ejemplo, estado del stream, cronograma, qué estoy haciendo ahora mismo, etc.
 
+(2026-05-05) Yyyy migré de repositorio porque me puse de acuerdo en qué user de Github quiero para cada tipo de proyecto. Yay!
+
 ## TODO
 
 - [x] Sección: acerca de mí
-- [ ] Sección: el canal de Twitch (lore y esas cosas)
+- [x] Sección: el canal de Twitch (lore y esas cosas)
 - [ ] Sección: galeria/s
 - [ ] Sección: gente copada / links / inspiración
 - [ ] Sección: créditos para el fondo de TextureStation
