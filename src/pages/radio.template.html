@@ -1,0 +1,41 @@
+@base
+@section title
+Jazzy is old - Crunchy radio
+@end
+@section content
+<h1>Jazzy's Crunchy radio</h1>
+<h3>¡Ahora a <a href="https://es.wikipedia.org/wiki/MP3" target="_blank">unos impresionantes 48 kbps!</a></h3>
+
+<article id="radio-player">
+  <audio controls preload="none">
+    <source
+        src="https://radio.jazzyhamster.ar/stream"
+        type="audio/mpeg"
+    >
+  </audio>
+  <marquee class="now-playing-title">...</marquee>
+</article>
+
+<script>
+    function updateNowPlaying() {
+        fetch('https://radio.jazzyhamster.ar/status-json.xsl')
+            .then(data => data.json())
+            .then(data => {
+                const nowPlayingEl = document.querySelector('.now-playing-title');
+                const fetched = data.icestats.source.title;
+                const current = nowPlayingEl.innerHTML;
+
+                if (fetched.localeCompare(current) === 0) {
+                    return;
+                }
+
+                nowPlayingEl.innerHTML = data.icestats.source.title;
+            })
+    }
+
+    updateNowPlaying();
+    setTimeout(function() {
+        setInterval(updateNowPlaying, 5000);
+    }, 1000);
+</script>
+@end

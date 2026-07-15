@@ -327,3 +327,16 @@ td>ul {
     padding-inline-start: 0;
     list-style: none;
 }
+
+#radio-player {
+    width: 90%;
+    margin: auto;
+
+    &>audio {
+        width: 100%;
+    }
+
+    & .now-playing-title {
+        font-family: sans-serif;
+    }
+}
