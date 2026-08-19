@@ -9,15 +9,9 @@ const srcDir = './src';
 const outputDir = './public';
 const BASE_TEMPLATE_FILE = 'base.template.html';
 
-const BLOG_LATEST_TAG = '<b style="color: darkblue">👈 Última actualización</b>';
-
 const pageFiles = (await readdir(
-    path.join(srcDir, 'pages'), {
-        recursive: true
-    }
+    path.join(srcDir, 'pages')
 )).filter(x => x.endsWith(TEMPLATE_EXTENSION));
-
-pageFiles.sort((a, b) => b.localeCompare(a));
 
 const pages = pageFiles.map(x => {
     return {
@@ -50,7 +44,6 @@ function generateRssFeed(posts) {
         <channel>
         <title>Jazzy is old - blog</title>
     <link>${rssBaseSite}</link>
-    <description>Your updates</description>
 
     ${posts.map(post => `
     <item>
@@ -74,16 +67,14 @@ try {
 let blogPosts = [];
 
 for (const page of pages) {
-    const { file, level } = page;
+    const { file } = page;
     console.log(`Processing ${file}...`);
 
     const content = await readFile(path.join(srcDir, 'pages', file), 'utf-8');
     const lines = content.split('\n');
 
     // If we're extending from the base layout, use it for the rest of the process
-    const matches = lines[0].match(/(@base)( \w+)?/);
-    const isBase = undefined !== matches[1];
-    const tag = matches[2]?.trim();
+    const isBase = null !== lines[0].match(/@base/);
 
     const templateOutput = isBase ?
         (await getBaseLayout()).split('\n') :
@@ -147,49 +138,18 @@ for (const page of pages) {
     const targetPageURI = file.replace(TEMPLATE_EXTENSION, '.html');
 
     for (let i = 0; i < templateOutput.length; ++i) {
-        if (templateOutput[i].trim().startsWith(`<li><a href="@rel(${targetPageURI.split('/')[0]}`)) {
+        if (templateOutput[i].trim().startsWith(`<a href="@rel(${targetPageURI.split('/')[0]})">`)) {
             activePageLinkIndex = i;
             break;
         }
     }
 
     if (activePageLinkIndex) {
+        console.log('index', activePageLinkIndex);
         const elSpan = templateOutput[activePageLinkIndex]
-            .replace(/<a href="[^"]+">/, '<span>')
-            .replace('</a>', '</span>');
+            .replace(/(<a href="[^"]+")>/, (match, p1) => `${p1} class="active">`);
 
         templateOutput.splice(activePageLinkIndex, 1, elSpan);
-    }
-
-    // Some more border cases
-    switch (tag) {
-        case 'blog':
-            // Add blog.css
-            const mainCssIndex = templateOutput.findIndex(x => x.includes('main.css'));
-            templateOutput.splice(mainCssIndex, 0, templateOutput[mainCssIndex].replace('main.css', 'blog.css'));
-
-            // Add to blog posts for index and RSS feed
-            const titleIndex = templateOutput.findIndex(x => x.includes('<h2>'));
-            const titleLine = templateOutput[titleIndex];
-
-            // Extract tags from @ if exists
-            const tags = lines.find(x => x.startsWith('@tags'))?.split(' ').slice(1) ?? [];
-
-            if (titleIndex !== -1) {
-                blogPosts.push({
-                    title: titleLine.replace('<h2>', '').replace('</h2>', '').trim(),
-                    url: targetPageURI,
-                    date: new Date(
-                        targetPageURI.substring('blog/'.length, 'blog/'.length + 10)
-                    ),
-                    tags
-                });
-            }
-
-            break;
-
-        default:
-            break;
     }
 
     // Final pass for @rel
@@ -197,27 +157,31 @@ for (const page of pages) {
         const matches = templateOutput[i].match(/(@rel\(([^)]+)\))/);
         if (!matches) continue;
 
-        const line = templateOutput[i].replace(matches[1], '../'.repeat(level) + matches[2]);
+        const line = templateOutput[i].replace(matches[1], matches[2]);
         templateOutput.splice(i, 1, line);
     }
 
     // Final final pass for blog only
     if (targetPageURI === 'blog.html') {
-        const i = templateOutput.findIndex(x => x.includes('<tbody></tbody>'));
-        const rows = blogPosts.map((post, i) => `
-<tr>
-  <td>
-    ${formatDate(post.date)}
-    ${i === 0 ? BLOG_LATEST_TAG : ''}
-  </td>
-  <td>
-    <a href="${post.url}">${post.title}</a>
-  </td>
-  <td class="blog-tags">
-    ${post.tags.map(x => `<span class="blog-tag">:${x}</span>`).join(' ')}
-  </td>
-</tr>`)
-        templateOutput.splice(i, 1, rows.join('\n'));
+        for (let i = 0; i < templateOutput.length; ++i) {
+            try {
+                const articleId = templateOutput[i].match(/<article id="(.+)">/)[1];
+                const newPost = {
+                    date: new Date([...templateOutput[i + 2]
+                            .match(/<small>([^<]+)<\/small>/)[1]
+                            .match(/(\d+)\/(\d+)\/(\d+)/)
+                        ].slice(1)
+                        .reverse()
+                        .join('/')
+                    ),
+                    title: templateOutput[i + 3].match(/<h\d>([^<]+)<\/h\d>/)[1],
+                    url: `blog.html#${articleId}`
+                }
+
+                blogPosts.push(newPost);
+
+            } catch { }
+        }
     }
 
     // Write to file, be happy
