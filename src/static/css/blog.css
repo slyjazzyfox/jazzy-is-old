@@ -1,7 +1,5 @@
 article {
     padding: 1rem;
-    font-family: sans-serif;
-    font-size: calc(var(--font-size) * 1.25);
 }
 
 .article-header {

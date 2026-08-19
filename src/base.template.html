@@ -19,28 +19,41 @@
   </style>
 </head>
 <body>
-<div class="logo-container">
-  <a href="@rel(index.html)" class="logo">
-    <img src="@rel(img/logo.gif)" alt="Black and white hamster playing a keytar" title="Jazzy is old"/>
-  </a>
-  <small class="art-by">art by <a href="https://t.me/tejoarts" target="_blank">Tejoncita</a></small>
-</div>
+<header>
+  <div class="logo-container centered">
+    <img
+        src="@rel(img/hamster/look-1.gif)" alt="Jazzy looking at camera surprised"
+        style="transform: translateX(25%);"
+    >
+    <a href="@rel(index.html)" class="logo">
+      <img src="@rel(img/logo.gif)" alt="A logo" title="JazzyHamster_Ar"/>
+    </a>
+    <img
+        src="@rel(img/hamster/look-2.gif)" alt="Jazzy looking at camera surprised pointing behind"
+        style="transform: translateX(-25%);"
+    >
+  </div>
 
-<nav class="top-nav">
-@include common/top-nav.html
-</nav>
+  <nav class="top-nav">
+  @include common/top-nav.html
+  </nav>
+</header>
 
 <aside>
-  @include common/sidebar.html
+  <nav class="sidebar">
+    @include common/sidebar.html
+  </nav>
 </aside>
+
 <main>
   <div class="content">
     @yield content
   </div>
 
-  <footer>
-    @include common/footer.html
-  </footer>
 </main>
+
+<footer>
+  @include common/footer.html
+</footer>
 </body>
 </html>
