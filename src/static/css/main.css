@@ -159,6 +159,13 @@ nav.top-nav {
     }
 }
 
+aside {
+    display: flex;
+    flex-direction: column;
+
+    align-items: stretch;
+}
+
 nav.sidebar {
     padding: .5rem;
     display: flex;
@@ -197,7 +204,7 @@ nav.sidebar {
     }
 }
 
-a.big-button {
+.sidebar a {
     display: flex;
     gap: .5rem;
     flex-direction: row;
@@ -220,7 +227,7 @@ a.big-button {
         transform: translate(-2px, -2px);
     }
 
-    &:active {
+    &.active, &:active {
         border-top: solid darkgray;
         border-left: solid darkgray;
         border-right: solid white;
